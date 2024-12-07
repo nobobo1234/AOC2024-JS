@@ -65,7 +65,8 @@ const part2 = (input) => {
     let sum = 0;
     for (let x = 0; x < input[0].length; x++) {
         for (let y = 0; y < input.length; y++) {
-
+i           // Recreate the obstacles loop with the new obstacle instead of 
+            // tampering with the old one.
             let newObstacles = [...obstacles, `${x},${y}`];
 
             // Keep track of all the places we've found an obstacle.
@@ -85,9 +86,11 @@ const part2 = (input) => {
                 // that we were going. If we're going left/right y becomes the same direction
                 // we were going.
                 if (isObstacle(currX + dirX, currY + dirY, newObstacles)) {
-                    // If we reach an obstacle on the same place twice we've encountered a loop.
+                    // If we reach an obstacle on the same rotation/place twice we've encountered a loop.
                     if (foundObstacles.includes(`${currX},${currY}|${currX + dirX},${currY + dirY}`)) {
                         sum++;
+
+                        // I do not like breaking in a while loop but it's the simplest way to do this.
                         break;
                     }
                     foundObstacles.push(`${currX},${currY}|${currX + dirX},${currY + dirY}`);
