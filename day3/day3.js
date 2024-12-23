@@ -1,8 +1,4 @@
-import fs from 'fs';
-
-const input = fs.readFileSync('./day3.txt', 'utf-8').trim()
-
-const part1 = (input) => {
+export const part1 = (input) => {
     const regex = /mul\((\d+),(\d+)\)/g;
     let matches = [...input.matchAll(regex)];
 
@@ -16,7 +12,7 @@ const part1 = (input) => {
     return sum;
 }
 
-const part2 = (input) => {
+export const part2 = (input) => {
     const matchDo = /do\(\)/g;
     const matchDont = /don't\(\)/g;
     const matchesDo = [...input.matchAll(matchDo)].map(m => ({ index: m.index, type: 'do' }));
@@ -55,6 +51,3 @@ const part2 = (input) => {
 
     return sum;
 }
-
-console.log(part1(input))
-console.log(part2(input))

@@ -1,12 +1,4 @@
-import fs from 'fs';
-
-const example = fs.readFileSync('day8ex.txt', 'utf8')
-    .trim()
-    .split('\n')
-
-const input = fs.readFileSync('day8.txt', 'utf8')
-    .trim()
-    .split('\n')
+export const prepareInput = (input) => input.trim().split('\n');
 
 const formatData = (inputGrid) => {
     // Find all the digits, or lower- and uppercase letters in a line and save them as objects with coords and types
@@ -31,7 +23,7 @@ const inRange = (x, y, input) => {
     return x >= 0 && x < input[0].length && y >= 0 && y < input.length;
 }
 
-const part1 = (input) => {
+export const part1 = (input) => {
     const antiNodes = new Set();
     const antennasByType = formatData(input);
 
@@ -57,7 +49,7 @@ const part1 = (input) => {
     return antiNodes.size;
 }
 
-const part2 = (input) => {
+export const part2 = (input) => {
     const antiNodes = new Set();
     const antennasByType = formatData(input);
 
@@ -99,8 +91,3 @@ const part2 = (input) => {
 
     return antiNodes.size;
 }
-
-console.log(part1(example));
-console.log(part1(input));
-console.log(part2(example));
-console.log(part2(input));

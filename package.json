@@ -1,3 +1,10 @@
 {
-    "type": "module"
+    "scripts": {
+        "start": "node run/run.js"
+    },
+    "type": "module",
+    "dependencies": {
+        "@inquirer/prompts": "^7.2.1",
+        "commander": "^12.1.0"
+    }
 }

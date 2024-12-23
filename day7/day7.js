@@ -1,4 +1,3 @@
-import fs from 'fs';
 import memoize from 'memoize';
 
 const product = memoize((iterables, repeat = 1) => {
@@ -18,19 +17,13 @@ const product = memoize((iterables, repeat = 1) => {
     }, [[]]);
 }, { cacheKey: JSON.stringify });
 
-const example = fs.readFileSync('./day7ex.txt', 'utf8')
+export const prepareInput = (input) => input
     .trim()
     .split('\n')
     .map(line => line.split(': '))
     .map(line => ({ value: Number(line[0]), eq: line[1].split(' ').map(Number) }))
 
-const input = fs.readFileSync('./day7.txt', 'utf8')
-    .trim()
-    .split('\n')
-    .map(line => line.split(': '))
-    .map(line => ({ value: Number(line[0]), eq: line[1].split(' ').map(Number) }))
-
-const part1 = (input) => {
+export const part1 = (input) => {
     let sum = 0;
 
     for (const { value, eq } of input) {
@@ -51,7 +44,7 @@ const part1 = (input) => {
     return sum;
 }
 
-const part2 = (input) => {
+export const part2 = (input) => {
     let sum = 0;
 
     for (const { value, eq } of input) {
@@ -78,8 +71,3 @@ const part2 = (input) => {
     
     return sum;
 }
-
-console.log(`Part 1 example: ${part1(example)}`);
-console.log(`Part 1 real: ${part1(input)}`);
-console.log(`Part 2 example: ${part2(example)}`);
-console.log(`Part 2 real: ${part2(input)}`);

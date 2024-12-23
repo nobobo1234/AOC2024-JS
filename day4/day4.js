@@ -1,7 +1,3 @@
-import fs from 'fs';
-
-const input = fs.readFileSync('day4.txt', 'utf-8').trim().split('\n');
-
 const part1 = (input) => {
     const rows = input.map(row => row.split(''));
 
@@ -98,6 +94,3 @@ const part2 = (input) => {
 
     return count;
 }
-
-console.log(part1(input));
-console.log(part2(input));

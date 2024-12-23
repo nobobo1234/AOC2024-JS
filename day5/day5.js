@@ -1,19 +1,21 @@
-import fs from 'fs';
+export const prepareInput = (input) => {
+    const mapping = input[0]
+        .split('\n')
+        .map(rule => rule.split('|'))
+        .reduce((acc, [key, value]) => {
+            if (acc.has(+key)) {
+                acc.get(+key).push(+value);
+            } else {
+                acc.set(+key, [+value]);
+            }
 
-const input = fs.readFileSync('day5.txt', 'utf8').trim().split('\n\n');
-const mapping = input[0]
-    .split('\n')
-    .map(rule => rule.split('|'))
-    .reduce((acc, [key, value]) => {
-        if (acc.has(+key)) {
-            acc.get(+key).push(+value);
-        } else {
-            acc.set(+key, [+value]);
-        }
+            return acc;
+        }, new Map());
 
-        return acc;
-    }, new Map());
-const updates = input[1].split('\n').map(update => update.split(',').map(Number));
+    const updates = input[1].split('\n').map(update => update.split(',').map(Number));
+
+    return [mapping, updates];
+}
 
 const onlyInOrdRule = (update, no, mapping) => new Set(update).intersection(new Set(mapping.get(no)))
 

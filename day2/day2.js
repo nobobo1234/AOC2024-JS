@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 function checkIfReportOkay(report) {
     let isAscending = true;
     if (report[0] > report[1]) {
@@ -31,7 +29,9 @@ function checkIfReportOkay(report) {
     return keptOrder.map((e, i) => e && keptDiffBetweenOneAndThree[i]);
 }
 
-function part1(lines) {
+export function part1(input) {
+    const lines = input.trim().split('\n').map(e => e.split(' ').map(Number));
+
     let sum = 0;
     for (const report of lines) {
         // Set initial isAscending value
@@ -45,7 +45,9 @@ function part1(lines) {
 }
 
 
-function part2(lines) {
+export function part2(input) {
+    const lines = input.trim().split('\n').map(e => e.split(' ').map(Number));
+
     let sum = 0;
     for (const report of lines) {
         // Returns list of booleans.
@@ -79,9 +81,3 @@ function part2(lines) {
     }
     return sum;
 }
-
-const input = fs.readFileSync('day2.txt', 'utf8');
-const lines = input.trim().split('\n').map(e => e.split(' ').map(Number));
-
-console.log(part1(lines));
-console.log(part2(lines));

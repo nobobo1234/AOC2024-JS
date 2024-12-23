@@ -1,14 +1,7 @@
-import fs from 'fs';
-import { performance } from 'perf_hooks';
-
-const example = fs.readFileSync('day6ex.txt', 'utf8').trim().split('\n')
-const input = fs.readFileSync('day6.txt', 'utf8').trim().split('\n')
-
 const isObstacle = (x, y, obstacles) => obstacles.includes(`${x},${y}`);
 const isEnd = (x, y, input) => x < 0 || x >= input[0].length || y < 0 || y >= input.length;
 
-
-const part1 = (input) => {
+export const part1 = (input) => {
     // Finds coordinates of the guard by checking if ^ can be found in each
     // line. Return index with index of line.
     let [guardX, guardY] = input.reduce((acc, line, i) => {
@@ -48,7 +41,7 @@ const part1 = (input) => {
     return visited.size;
 }
 
-const part2 = (input) => {
+export const part2 = (input) => {
     // Finds coordinates of the guard by checking if ^ can be found in each
     // line. Return index with index of line.
     let [guardX, guardY] = input.reduce((acc, line, i) => {
@@ -113,14 +106,3 @@ i           // Recreate the obstacles loop with the new obstacle instead of
 
     return sum;
 }
-
-console.log(`Example: ${part1(example)}`);
-console.log(`Real: ${part1(input)}`);
-
-console.log(`Example: ${part2(example)}`);
-
-const startTime = performance.now()
-console.log(`Real: ${part2(input)}`);
-const endTime = performance.now();
-
-console.log(`Day 6 part 2 took ${endTime - startTime} milliseconds`);
